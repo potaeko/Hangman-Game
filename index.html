@@ -1,196 +1,38 @@
 <!Doctype html>
 <html lang="en-us">
-<head>
-   <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hangman-game</title>
-   
-     <!-- Bootstrap CDN -->
-     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>HANGMAN-GAME</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
-</head>
-
-<body>
-
-
-
-<div class="container">
-   <div class="row">
-        <div class="col-md-3"></div>  
-        <div class="col-md-6">   
-         <img src="assets/images/rocklogo2.png" class="top img-responsive center_image" height=400px>
-         <p id=died class="center"></p>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="assets/images/mainimage.jpg" class="main-image img-responsive center-block">
+                    <p class="text-center">
+                        <button class="btn btn-primary btn-lg normal-button" id="playbtn"><span class="glyphicon glyphicon-play"></span> Click to Play</button>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <!--Left Section-->
+                <div id="guess-box" class="col-md-5 col-sm-5">
+                </div>
+                <!-- Empty Space -->
+                <div  class="col-md-2 col-sm-2">
+                </div>
+                <!--Right Section-->
+                <div id="answer-box" class="col-md-5 col-sm-5">
+                </div>
+            </div>
         </div>
-        <div class="col-md-3"></div>
-
-   </div> 
-    <div class="row top bottom">            
-      <div class="col-md-3 col-sm-6">  <!--column1-->
-       
-      </div>
-      <div class="col-md-3 col-sm-6">  <!--column2-->
-
-      </div> 
-      <div class="col-md-3 col-sm-6">  <!--column3-->
-        <p>PRESS ANY KEY TO GET STARTED!</p>
-        <p >WIN: <p id=winscore></p></p>
-        <p id=array></p>
-        <p>Number of Guesses Remaining</p>
-        <P id=remain></P>
-        <p>LETTERS ALREADY GUESSED</p>
-        <p id=guessed></p>
-        
-      </div>
-      <div class="col-md-3 col-sm-6"> <!--column4-->
-        
-      </div>  
-      
-    </div> <!--row div-->
-   
-</div>
-
-<!--started!-->
-<script type="text/javascript">
- 
- //win score   
-   var win=0;
-   var songs=['rainingblood','highwaystar','chopsuey','entersandman','smokeonthewater'];
-   var Numberguesses=20;
-   var check ='';
-   var slayer = new Audio("assets/Slayer - Raining Blood.mp3");
-   var dpstar = new Audio("assets/Deep Purple - Highway Star.mp3")
-   var dpsmoke = new Audio("assets/Deep Purple - Smoke on the Water.mp3");
-   var mt = new Audio("assets/Metallica - Enter Sandman Official Music Video.mp3");
-   var sod = new Audio("assets/System Of A Down - Chop Suey!.mp3");
-
-  
-    
-
- 
-  
-    // Pick a random song
-    
-    var song = songs[Math.floor(Math.random()* songs.length)]; // pick one song
-    console.log(song) //check song
-
-    // Set up the answer array
-
-    var answerArray = [];    //empty array
-    var letterAlreadyguess =[];
-
-    for (var i = 0; i < song.length; i++) {  //break to show "-" as song letters
-
-      answerArray[i] = "_";   
-      console.log(answerArray)     
-    
-    }
-    
-    var remainingLetters = song.length; //how many times to get to song letters
-
-
-    document.onkeyup = function(guess) {   
-    var keyinput = guess.key.toLowerCase(); 
-    
-    letterAlreadyguess.push(keyinput)
-    document.getElementById('guessed').innerHTML = letterAlreadyguess;
-      console.log(keyinput)
-
-   if ((Numberguesses>0)&&(answerArray.indexOf(keyinput)==-1)) { 
-     console.log(Numberguesses)
-     Numberguesses--; 
-     document.getElementById('remain').innerHTML = Numberguesses; 
-
-    for (var j = 0; j < song.length; j++) {  
-
-          if (keyinput===song[j]) { //if keyinput correct in song
-
-            answerArray[j] = keyinput; //keep in answerarray[location] to replace "-"
-            document.getElementById('array').innerHTML = answerArray; 
-            remainingLetters--;
-
-            console.log(song[j])
-            console.log(answerArray)
-            console.log(remainingLetters)
-            if (remainingLetters==0){     // check win point
-             for (var z=0;z<answerArray.length;z++){   
-             check=check+answerArray[z];
-             console.log(check)
-              if(check==song){
-              win++;
-              document.getElementById('winscore').innerHTML =win;
-                 if(song=='rainingblood'){
-                 slayer.play();
-                 }
-                 else if(song=='highwaystar'){
-                 dpstar.play()
-                 }
-                 else if(song=='smokeonthewater'){
-                  dpsmoke.play()
-                 }
-                 else if(song=='entersandman'){
-                  mt.play()
-                 }
-                 else if(song=='chopsuey'){
-                  sod.play()
-                 }
-             }
-           }
-          }  
-          }
-        
-
-
-            
-           
-
-          }
-          
-
-
-        }
-        
-    
-    } 
-
-    
-
-
-
-
-     
-      
-
-
-
-
- 
-
-   
-
-
-
-
-
-
-
-   
-  
-
-   
-
-
-    
-
-</script>
-</body>
+      <script src="../assets/javascripts/script.js"></script>
+    </body>
 </html>
-
