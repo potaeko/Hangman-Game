@@ -1,8 +1,8 @@
 # Hangman-Game
 Created Simple Hangman Game with HTML,CSS,Javascript and mp3 files.</br>
-GAME:
--Click the Button to start guessing and click again for the next guess.
--Game will track wins and losses.
--Refresh page to start over.
--The song will be playd as a reward for the user.
--Ipad and mobile responsive with the text placeholder to type in. 
+GAME:</br>
+-Click the Button to start guessing and click again for the next guess.</br>
+-Game will track wins and losses.</br>
+-Refresh page to start over.</br>
+-The song will be playd as a reward for the user.</br>
+-Ipad and mobile responsive with the text placeholder to type in. </br>
