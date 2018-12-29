@@ -1,5 +1,5 @@
 # Hangman-Game
-Created Simple Hangman Game with HTML,CSS,Javascript and mp3 files.
+Created Simple Hangman Game with HTML,CSS,Javascript and mp3 files.</br>
 GAME:
 -Click the Button to start guessing and click again for the next guess.
 -Game will track wins and losses.
