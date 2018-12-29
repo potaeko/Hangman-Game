@@ -138,6 +138,10 @@ function printDocument() {
     document.querySelector("#answer-box").innerHTML = right;
 };
 
+focusMethod = function getFocus() {           
+    document.getElementById("guess-box").focus();
+  }
+
 //User Click Play Button To Load Functions
 document.getElementById('playbtn').onmousedown = function play() {
     reset();
